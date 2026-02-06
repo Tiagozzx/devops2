@@ -1,0 +1,15 @@
+name: CI Pipeline
+on: [push]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Construir imagen Docker
+        run: docker build -t monitor-app .
+
+      - name: Ejecutar test de monitoreo
+        run: docker run monitor-app
